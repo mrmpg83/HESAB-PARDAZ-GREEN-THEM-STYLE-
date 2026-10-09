@@ -79,7 +79,7 @@ REPO-NAME/
 
 ## Screenshots
 
- Add screenshots here, for example:
+ some screenshots here, for example:
  ![Home page](screenshots/home.png)
  ![Home page mobile](screenshots/home_(iPhone 16).png)
  ![chat page](screenshots/chat.png)
