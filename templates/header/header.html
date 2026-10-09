@@ -1,0 +1,156 @@
+{% load static %}
+<header>
+  <div class="nav wrap">
+    <a href="{% url 'home' %}"><div class="nav-logo"><span class="mark"><img src="{% static 'img/charah.png' %}" alt="نرم‌افزار حسابداری حسابپرداز"></span> HESAB PARDAZ</div></a>
+    <nav class="nav-links">
+      <div class="nav-item">
+        <button class="nav-trig">دانلودها <span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="{% url 'demo' %}">دمو<small>دانلود نسخه تستی از نرم افزار</small></a>
+          <a href="{% url 'download_requirements' %}">پیش نیاز نرم افزار<small>برنامه ها و فایل های مورد نیاز نرم افزار </small></a>
+          <a href="{% url 'updates' %}">آپدیت ها<small>نسخه های موجود از نرم افزار </small></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-trig">امکانات <span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="{% url 'barkodKhan' %}">بارکد خان <small>سینک شدن بارکد خان به حساب پرداز</small></a>
+          <a href="{% url 'excel' %}">خروجی اکسل <small>فاکتور، پیگیری و یادآوری خودکار به صورت اکسل</small></a>
+          <a href="{% url 'website_connect' %}">سایت فروشگاهی<small>وصل شدن موجودیها و فروش ها از سایت فروشگاهی به حساب پرداز</small></a>
+          <a href="{% url 'banksink' %}">همگام‌سازی بانکی<small>اتصال به بیش از ۱۰,۰۰۰ بانک</small></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-trig">انتخاب نسخه <span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="{% url 'pricing' %}">مخصوص<small>نسخه مورد نظر خودت رو بساز</small></a>
+          <a href="{% url 'infobazargani' %}">بازرگانی <small>محبوب‌ترین انتخاب تیم‌ها</small></a>
+          <a href="{% url 'infotolidi' %}">تولیدی<small>قیمت‌گذاری سفارشی</small></a>
+          <a href="{% url 'infokhadamat' %}">خدماتی<small>قیمت‌گذاری سفارشی</small></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-trig">آموزش ها <span class="chev">▾</span></button>
+        <div class="dropdown">
+          <a href="{% url 'accounting_training' %}">حسابداری<small>اموزش بروز ترین متد های حسایداری</small></a>
+          <a href="{% url 'software_training' %}">نرم افزار<small>یادگیری کامل نرم افزار حسابداری حساب پرداز</small></a>
+          <a href="{% url 'setting_software' %}">تنظیمات نرم افزار<small>تنظیمات اختصاصی نرم افزار</small></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="{% url 'about' %}" class="nav-trig">توسعه دهندگان</a>
+      </div>
+      <div class="nav-item">
+        <a href="{% url 'weblug' %}" class="nav-trig">وبلاگ</a>
+      </div>
+    </nav>
+    <div class="nav-actions">
+            {% if user.is_authenticated %}
+            <div class="nav-actions" style="padding: 5px;background: linear-gradient(120deg, rgba(230, 200, 143, 0.16), #c9e639c9);border: 1px solid var(--glass-border);border-radius: 5px;">
+                <span>سلام، {{ user.username }}</span>
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button class="Btn1" type="submit">
+  
+                    <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+  
+                     <div class="text">خروج</div>
+                    </button>
+                </form>
+            </div>
+
+            {% else %}
+      <a href="{% url 'login' %}" class="btn-login">ورود</a>
+      <a href="{% url 'register' %}" class="uiverse">
+        <div class="wrapper">
+          <span>شروع رایگان</span>
+          <div class="circle circle-12"></div>
+          <div class="circle circle-11"></div>
+          <div class="circle circle-10"></div>
+          <div class="circle circle-9"></div>
+          <div class="circle circle-8"></div>
+          <div class="circle circle-7"></div>
+          <div class="circle circle-6"></div>
+          <div class="circle circle-5"></div>
+          <div class="circle circle-4"></div>
+          <div class="circle circle-3"></div>
+          <div class="circle circle-2"></div>
+          <div class="circle circle-1"></div>
+        </div>
+      </a>
+            {% endif %}
+      <button class="burger" onclick="openDrawer()">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-backdrop" id="mbackdrop" onclick="closeDrawer()"></div>
+<aside class="mobile-drawer" id="mdrawer">
+  <div class="mdrawer-head">
+    <button class="mdrawer-close" onclick="closeDrawer()">✕</button>
+    <div class="nav-logo"><span class="mark"><img src="https://nptak.ir/static/WebSiteApp/home/logo.png" alt=""></span> NOVIN PARDAZ</div>
+  </div>
+  <div class="mdrawer-list">
+    <details class="mobile-drop">
+      <summary>دانلودها <span class="chev">▾</span></summary>
+      <div class="sub">
+        <a href="{% url 'demo' %}">دمو</a>
+        <a href="{% url 'download_requirements' %}">پیش نیاز نرم افزار</a>
+        <a href="{% url 'updates' %}">آپدیت ها</a>
+      </div>
+    </details>
+    <details class="mobile-drop">
+      <summary>امکانات <span class="chev">▾</span></summary>
+      <div class="sub">
+        <a href="{% url 'barkodKhan' %}">بارکد خان </a>
+        <a href="{% url 'excel' %}">خروجی اکسل /a>
+        <a href="{% url 'website_connect' %}">سایت فروشگاهی</a>
+        <a href="{% url 'banksink' %}">همگام‌سازی بانکی</a>
+      </div>
+    </details>
+    <details class="mobile-drop">
+      <summary>انتخاب نسخه<span class="chev">▾</span></summary>
+      <div class="sub">
+        <a href="{% url 'pricing' %}">مخصوص</a>
+        <a href="{% url 'infobazargani' %}">بازرگانی</a>
+        <a href="{% url 'infotolidi' %}">تولیدی</a>
+        <a href="{% url 'infokhadamat' %}">خدماتی</a>
+      </div>
+    </details>
+    <details class="mobile-drop">
+      <summary>آموزش ها <span class="chev">▾</span></summary>
+      <div class="sub">
+        <a href="{% url 'accounting_training' %}">حسابداری</a>
+        <a href="{% url 'software_training' %}">نرم افزار حسابپرداز</a>
+        <a href="{% url 'setting_software' %}">تنظیمات حسابپرداز</a>
+      </div>
+    </details>
+    <details class="mobile-drop">
+      <summary><a href="{% url 'about' %}">توسعه دهنگان</a></summary>
+    </details>
+    <details class="mobile-drop">
+      <summary> <a href="{% url 'weblug' %}">وبلاگ</a></summary>
+    </details>
+  </div>
+  <div class="mdrawer-foot">
+            {% if user.is_authenticated %}
+            <div class="nav-actions" style="padding: 5px;background-color: #0004ff;border-radius: 5px;">
+                <span>سلام، {{ user.username }}</span>
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button class="Btn1" type="submit">
+  
+                    <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+  
+                     <div class="text">خروج</div>
+                    </button>
+                </form>
+            </div>
+
+            {% else %}
+
+    <a href="{% url 'register' %}" class="btn btn-cream btn-block">شروع رایگان</a>
+    <a href="{% url 'login' %}" class="btn btn-outline-on-green btn-block">ورود به حساب</a>
+            {% endif %}
+  </div>
+</aside>

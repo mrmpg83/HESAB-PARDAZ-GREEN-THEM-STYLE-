@@ -1,0 +1,65 @@
+{% extends "pages/base.html" %}
+{% block title %}حساب پرداز | ارتباط با ما{% endblock %}
+{% load static %}
+{% block content %}
+<H1 hidden>نرم افزار</H1>
+<H2 hidden>حسابداری</H2>
+<H3 hidden>حساب پردازنرم افزار حسابداری</H3>
+<H4 hidden>برنامه حسابداری</H4>
+<H5 hidden> برنامه نرم‌افزار حسابداری</H5>
+<H6 hidden>نرم‌افزار مالی حسابداری</H6>
+<title hidden>برنامه حسابداری حساب پرداز</title>
+<section class="post-hero">
+  <div class="wrap">
+    <div class="post-crumb"><a href="{% url 'weblug' %}">وبلاگ</a> <span>/</span> <span>حسابداری</span></div>
+    <h1 class="post-title">{{ weblug.title}}</h1>
+    <div class="post-meta-row">
+      <div class="who"><div class="avatar" style="border-radius:100px;background:var(--green-900);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;">س</div>سارا محمدی · مدیر محتوای مالی</div>
+      <span>{{ weblug.date}}</span>
+      <span>۹ دقیقه مطالعه</span>
+    </div>
+    <div class="post-banner banner-t1">🧾</div>
+  </div>
+</section>
+ 
+<section class="section">
+  <div class="wrap">
+    <article class="post-body-wrap post-body">
+ 
+      <div class="post-section">
+        <h2>{{ weblug.titr1}}</h2>
+        <p>{{ weblug.paragraph1}}.</p>
+      </div>
+ 
+      <div class="post-section">
+        <div class="section-banner banner-t3">📄</div>
+        <h2>{{ weblug.titr2}}</h2>
+        <p>{{ weblug.paragraph2}}.</p>
+      </div>
+ 
+      <div class="post-section">
+        <div class="section-banner banner-t4">📦</div>
+        <h2>{{ weblug.titr3}}</h2>
+        <p>{{ weblug.paragraph3}}.</p>
+      </div>
+ 
+      <div class="post-section">
+        <div class="section-banner banner-t5">🧮</div>
+        <h2>{{ weblug.titr4}}</h2>
+        <p>{{ weblug.paragraph4}}.</p>
+      </div>
+ 
+      <hr class="post-divider">
+ 
+      <div class="author-box">
+        <div class="avatar" style="border-radius:100px;background:var(--green-900);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;">س</div>
+        <div>
+          <h4>سارا محمدی</h4>
+          <p>مدیر محتوای مالی در حساب پرداز؛ نویسنده راهنماهای عملی حسابداری برای کسب‌وکارهای کوچک.</p>
+        </div>
+      </div>
+ 
+    </article>
+  </div>
+</section>
+{% endblock %}

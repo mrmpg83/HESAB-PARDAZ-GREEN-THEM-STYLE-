@@ -1,0 +1,63 @@
+{% extends "pages/base.html" %}
+{% block title %}حساب پرداز | پیش‌نیازهای دانلود{% endblock %}
+{% block content %}
+<H1 hidden>نرم افزار</H1>
+<H2 hidden>حسابداری</H2>
+<H3 hidden>حساب پردازنرم افزار حسابداری</H3>
+<H4 hidden>برنامه حسابداری</H4>
+<H5 hidden> برنامه نرم‌افزار حسابداری</H5>
+<H6 hidden>نرم‌افزار مالی حسابداری</H6>
+<title hidden>برنامه حسابداری حساب پرداز</title>
+<section class="about-hero">
+  <div class="dot-overlay"></div>
+  <div class="wrap">
+    <span class="eyebrow eyebrow-on-cream">دمو · پیش‌نیاز دانلود</span>
+    <h1>پیش‌نیاز نصب و دانلود</h1>
+    <p>پیش از دانلود و نصب حساب پرداز، لطفاً از آماده‌بودن سیستم خود مطابق موارد زیر مطمئن شوید تا نصب بدون مشکل انجام شود.</p>
+  </div>
+</section>
+
+<section class="req-section">
+  <h2>مشخصات سیستم موردنیاز</h2>
+
+  <ul class="req-specs">
+    <li><b>سیستم‌عامل:</b> ویندوز ۱۰ یا ۱۱ (نسخه ۶۴ بیتی)</li>
+    <li><b>حافظه رم:</b> حداقل ۴ گیگابایت (پیشنهادی ۸ گیگابایت)</li>
+    <li><b>فضای خالی دیسک:</b> حداقل ۲ گیگابایت فضای آزاد</li>
+    <li><b>اینترنت:</b> اتصال پایدار برای دریافت بروزرسانی و همگام‌سازی</li>
+    <li><b>دسترسی سیستم:</b> دسترسی ادمین (Administrator) روی ویندوز</li>
+    <li><b>نرم‌افزارهای جانبی:</b> نصب پیش‌نیازهایی مثل SQL Server و PowerShell طبق جدول زیر</li>
+  </ul>
+
+  <h3 class="req-table-title">لیست نرم‌افزار‌های مورد نیاز قبل از دانلود</h3>
+
+  <div class="req-table">
+
+    <div class="req-row head">
+      <div>ردیف</div>
+      <div>نام نرم‌افزار</div>
+      <div>توضیحات</div>
+      <div>دریافت با لینک مستقیم</div>
+      <div>دریافت با لینک کمکی</div>
+    </div>
+  {% for DownloadRequirements in downloadRequirements %}
+    <div class="req-row">
+      <div class="req-num">{{forloop.counter}}</div>
+      <div class="req-name"><span class="req-lbl">نام:</span>{{DownloadRequirements.nameApp}}</div>
+      <div class="req-desc"><span class="req-lbl">توضیحات:</span>{{DownloadRequirements.description}}</div>
+      {% if DownloadRequirements.download1 %}
+      <div class="req-direct"><span class="req-lbl">لینک دانلود:</span><a href="{{DownloadRequirements.download1}}" class="btn-req primary">↓ دانلود</a></div>
+      {% else %}
+      <div class="req-helper"><span class="req-dash">--</span></div>
+      {% endif %}
+      {% if DownloadRequirements.download2 %}
+      <div class="req-helper"><span class="req-lbl">لینک دانلود:</span><a href="{{DownloadRequirements.download2}}" class="btn-req secondary">↓ دانلود</a></div>
+      {% else %}
+      <div class="req-helper"><span class="req-dash">--</span></div>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}حساب پرداز{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/buttonColor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta {% block description %} {% endblock %}>
+    <meta {% block keyword %} {% endblock %}>
+    <link rel="canonical" href="https://hesabpardaz.ir/0/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="طراحی سایت فروشگاهی و اتصال به نرم‌افزار حسابداری | حساب پرداز">
+    <meta property="og:description" content="سایت فروشگاهی بسازید یا سایت فعلی خود را به حساب پرداز وصل کنید تا فروش و موجودی به‌صورت خودکار همگام شود.">
+    <meta property="og:locale" content="fa_IR">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    {% include "header/header.html" %}
+    <main>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+    {% include "footer/footer.html" %}
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

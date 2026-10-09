@@ -1,0 +1,85 @@
+{% extends "pages/base.html" %}
+{% block title %}حساب پرداز | فرم خرید{% endblock %}
+{% block content %}
+<H1 hidden>نرم افزار</H1>
+<H2 hidden>حسابداری</H2>
+<H3 hidden>حساب پردازنرم افزار حسابداری</H3>
+<H4 hidden>برنامه حسابداری</H4>
+<H5 hidden> برنامه نرم‌افزار حسابداری</H5>
+<H6 hidden>نرم‌افزار مالی حسابداری</H6>
+<title hidden>برنامه حسابداری حساب پرداز</title>
+<section class="rf-hero">
+  <div class="wrap">
+    <span class="eyebrow eyebrow-on-cream">خرید از نماینده</span>
+    <h1>فرم درخواست خرید نرم‌افزار</h1>
+    <p>مشخصات خود را وارد کنید تا اطلاعاتتان برای نماینده انتخابی ارسال شود و در اسرع وقت با شما تماس بگیرد.</p>
+    <div class="rep-chip"><span class="dot"></span><span>نماینده انتخابی شما: <b id="repName">در حال بارگذاری...</b></span></div>
+  </div>
+</section>
+ 
+<div class="rf-wrap">
+ 
+<form class="form-card" id="repForm" novalidate method="post" action="{% url 'LASTfORM' agent.id %}">
+      {% csrf_token %}
+    <div class="form-grid">
+ 
+      <div class="field" data-field="firstName">
+        <label for="firstName">نام</label>
+        <input type="text" id="firstName" name="firstName" placeholder="مثلاً علی">
+        <span class="err">وارد کردن نام الزامی است</span>
+      </div>
+ 
+      <div class="field" data-field="lastName">
+        <label for="lastName">نام خانوادگی</label>
+        <input type="text" id="lastName" name="lastname" placeholder="مثلاً کریمی">
+        <span class="err">وارد کردن نام خانوادگی الزامی است</span>
+      </div>
+ 
+      <div class="field" data-field="businessName">
+        <label for="businessName">نام کسب‌وکار</label>
+        <input type="text" id="businessName" name="businessName" placeholder="مثلاً فروشگاه پارسیان">
+        <span class="err">وارد کردن نام کسب‌وکار الزامی است</span>
+      </div>
+ 
+      <div class="field" data-field="phone">
+        <label for="phone">شماره تلفن همراه</label>
+        <input type="tel" id="phone" name="phone" placeholder="۰۹۱۲۱۲۳۴۵۶۷" dir="ltr" style="text-align:right;">
+        <span class="err">شماره تلفن همراه معتبر وارد کنید</span>
+      </div>
+ 
+      <div class="field full" data-field="address">
+        <label for="address">آدرس محل کار</label>
+        <textarea id="address" name="address" placeholder="شهر، خیابان و آدرس دقیق محل کسب‌وکار"></textarea>
+        <span class="err">وارد کردن آدرس محل کار الزامی است</span>
+      </div>
+ 
+      <div class="field full" data-field="version">
+        <label for="version">نسخه موردنیاز</label>
+        <select id="version" name="version">
+          <option value="">انتخاب کنید...</option>
+          <option value="مخصوص">مخصوص فریلنسرها و کسب‌وکارهای کوچک</option>
+          <option value="بازرگانی">بازرگانی</option>
+          <option value="تولیدی">تولیدی</option>
+          <option value="خدماتی">خدماتی</option>
+        </select>
+        <span class="err">انتخاب نسخه موردنیاز الزامی است</span>
+      </div>
+ 
+    </div>
+ 
+    <div class="form-actions">
+      <button type="submit" class="btn btn-dark">ارسال درخواست به نماینده</button>
+    </div>
+    <p class="form-note">اطلاعات شما فقط برای برقراری تماس نماینده در اختیار او قرار می‌گیرد.</p>
+  </form>
+ 
+  <div class="success-card" id="successCard">
+    <div class="success-ic">✓</div>
+    <h2>درخواست شما ثبت شد</h2>
+    <p><b id="repNameSuccess"></b> به‌زودی با شما تماس می‌گیرد.</p>
+    <div class="success-summary" id="successSummary"></div>
+    <button type="button" class="btn btn-outline-on-cream" id="editBtn">ویرایش اطلاعات</button>
+  </div>
+ 
+</div>
+{% endblock %}

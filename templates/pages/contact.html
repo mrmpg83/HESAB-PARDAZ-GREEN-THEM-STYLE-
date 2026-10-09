@@ -1,0 +1,28 @@
+{% extends "pages/base.html" %}
+{% block title %}حساب پرداز | ارتباط با ما{% endblock %}
+{% block content %}
+<H1 hidden>نرم افزار</H1>
+<H2 hidden>حسابداری</H2>
+<H3 hidden>حساب پردازنرم افزار حسابداری</H3>
+<H4 hidden>برنامه حسابداری</H4>
+<H5 hidden> برنامه نرم‌افزار حسابداری</H5>
+<H6 hidden>نرم‌افزار مالی حسابداری</H6>
+<title hidden>برنامه حسابداری حساب پرداز</title>
+    <h1>ارتباط با ما</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="name">نام:</label><br>
+            <input type="text" id="name" name="name" required>
+        </p>
+        <p>
+            <label for="email">ایمیل:</label><br>
+            <input type="email" id="email" name="email" required>
+        </p>
+        <p>
+            <label for="message">پیام:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </p>
+        <button type="submit">ارسال پیام</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "pages/base.html" %}
+{% block title %}حساب پرداز | ثبت‌نام{% endblock %}
+{% block content %}
+<div class="auth-shell">
+ 
+  <aside class="auth-brand">
+    <div class="auth-mark">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M3 9h18M9 9v12" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+      <span>حساب‌پرداز</span>
+    </div>
+ 
+    <div class="auth-brand-body">
+      <h1>یک دفتر کل تازه برای کسب‌وکارتان باز کنید.</h1>
+      <p>در چند دقیقه ثبت‌نام کنید و مدیریت حساب‌ها، فاکتورها و گزارش‌های مالی را شروع کنید.</p>
+    </div>
+ 
+    <div class="auth-ledger-tags">
+      <span>تولیدی</span>
+      <span>فروشگاهی</span>
+      <span>شرکتی</span>
+      <span>خدماتی</span>
+    </div>
+  </aside>
+ 
+  <section class="auth-panel">
+    <div class="auth-card">
+      <span class="auth-tag">ثبت‌نام</span>
+ 
+      <div class="auth-form-box">
+        <h2>ساخت حساب جدید</h2>
+        <p class="auth-sub">اطلاعات زیر را برای شروع تکمیل کنید.</p>
+ 
+        <form method="post" class="auth-form">
+          {% csrf_token %}
+ 
+          {% if form.non_field_errors %}
+            <div class="form-errors">
+              {% for error in form.non_field_errors %}
+                <p class="error-message">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+ 
+          <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+            {{ form.username }}
+            {% for error in form.username.errors %}
+              <p class="error-message">{{ error }}</p>
+            {% endfor %}
+          </div>
+ 
+          <div class="form-group">
+            <label for="{{ form.phone_number.id_for_label }}">{{ form.phone_number.label }}</label>
+            {{ form.phone_number }}
+            {% for error in form.phone_number.errors %}
+              <p class="error-message">{{ error }}</p>
+            {% endfor %}
+          </div>
+ 
+          <div class="form-group">
+            <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+            {{ form.password1 }}
+            {% for error in form.password1.errors %}
+              <p class="error-message">{{ error }}</p>
+            {% endfor %}
+          </div>
+ 
+          <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+            {{ form.password2 }}
+            {% for error in form.password2.errors %}
+              <p class="error-message">{{ error }}</p>
+            {% endfor %}
+          </div>
+ 
+          <button type="submit" class="btn btn-primary">ثبت‌نام</button>
+        </form>
+ 
+        <p class="auth-foot">
+          قبلاً حساب ساخته‌اید؟ <a href="{% url 'login' %}">وارد شوید</a>
+        </p>
+      </div>
+    </div>
+  </section>
+ 
+</div>
+{% endblock %}

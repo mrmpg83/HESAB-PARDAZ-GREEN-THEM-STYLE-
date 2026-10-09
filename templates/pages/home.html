@@ -1,0 +1,265 @@
+{% extends "pages/base.html" %}
+{% block title %}حساب پرداز | صفحه اصلی{% endblock %}
+{% load static %}
+{% block content %}
+<H1 hidden>نرم افزار</H1>
+<H2 hidden>حسابداری</H2>
+<H3 hidden>حساب پردازنرم افزار حسابداری</H3>
+<H4 hidden>برنامه حسابداری</H4>
+<H5 hidden> برنامه نرم‌افزار حسابداری</H5>
+<H6 hidden>نرم‌افزار مالی حسابداری</H6>
+<title hidden>برنامه حسابداری حساب پرداز</title>
+<section class="hero">
+  <div class="dot-overlay"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="hero-eyebrow-row">
+        <span class="eyebrow eyebrow-on-green">دسته‌بندی تراکنش‌ها با حساب پرداز</span>
+      </div>
+      <h1>حسابداری که با کسب‌وکار شما همقدم است</h1>
+      <p class="lead">حساب پرداز به بنیان‌گذاران، مدیران مالی و تیم‌های حسابداری یک منبع واحد از حقیقت می‌دهد — دفاتر خودکار، گزارش‌های فوری و مالیاتِ آماده، بدون آشوبِ صفحه‌گسترده.</p>
+      <div class="hero-ctas">
+        <a href="{% url 'demo' %}" class="btn btn-cream">شروع آزمایش ۱۴ روز رایگان</a>
+        <a href="{% url 'software_training' %}" class="btn btn-outline-on-green">نحوه کار را ببینید ←</a>
+      </div>
+      <p class="hero-fineprint">بدون کارت اعتباری &nbsp;·&nbsp; لغو در هر زمان &nbsp;·&nbsp; گواهینامه SOC 2 Type II</p>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-top">
+        <div>
+          <div class="dash-label">فروش در این ماه</div>
+          <div class="dash-amount">۱۲۸,۴۵۰,۰۰۰ ت</div>
+        </div>
+        <span class="dash-badge">۱۴٪+</span>
+      </div>
+      <div class="bars">
+        <span style="height:35%"></span><span style="height:55%"></span><span style="height:40%"></span>
+        <span style="height:70%"></span><span style="height:50%" class="hi"></span><span style="height:80%"></span>
+        <span style="height:60%"></span><span style="height:45%"></span><span style="height:65%"></span><span style="height:38%"></span>
+      </div>
+      <ul class="dash-stats">
+        <li><b>۳۶</b> نسخه فروش رفته</li>
+        <li><b>۴.۱ / ۵</b> رضایت مندی</li>
+        <li><b>۹۸۲</b> ساعاتا استفاده از نرم افزار</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap banner-grid">
+    <div class="banner-card gold">
+      <div class="banner-icon"><img src="{% static 'img/images (1).jpg' %}" alt=""></div>
+      <div class="banner-body">
+        <h3> آموزشگاه حسابداری نوین پرداز</h3>
+        <p>آموزش بروز ترین متد  حسابداری با استفاده از نرم افزار های معتبر : حساب پرداز و هلو و سپیدار </p>
+        <span style="color: #f0dbb4;font-size: small;">با ثبت نام در دوره های ما یک دمو حساب پرداز دریافت کنید</span>
+      </div>
+      <div class="banner-body">
+        <a href="{% url 'accounting_training' %}">ثبت نام دوره ←</a>
+      </div>
+    </div>
+    <div class="banner-card">
+      <div class="banner-icon"><img src="{% static 'img/images.jpg' %}" alt=""></div>
+      <div class="banner-body">
+        <h3>پشتیبانی رایگان</h3>
+        <p>با دریافت نرم‌افزارحسابداری حسابپرداز تا یکسال پتیبانی رایگان داشته باشید</p>
+        <span style="color: #f0dbb4;font-size: small;">پشتیبانی تخصصی همه روزه</span>
+      </div>
+      <div class="banner-body">
+        <a href="{% url 'agentList' %}">دریافت نرم‌افزار ←</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div><div class="stat-num">۴.۹ / ۵</div><div class="stat-label">میانگین رضایت مشتریان</div></div>
+    <div><div class="stat-num">٪۹۹.۹۸</div><div class="stat-label">آپتایم تضمین‌شده</div></div>
+    <div><div class="stat-num">1 میلیارد</div><div class="stat-label">تومان تراکنش ماهانه</div></div>
+    <div><div class="stat-num">+۴,۰۰۰</div><div class="stat-label">کسب‌وکار به حساب پرداز اعتماد دارند</div></div>
+  </div>
+</div>
+
+<section class="section features" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow eyebrow-on-cream">امکانات</span>
+      <h2>هر آنچه تیم مالی شما نیاز دارد، در یک جا</h2>
+      <p>از حسابداری روزانه تا تنظیم پایان سال، حساب پرداز پیچیدگی را مدیریت می‌کند تا تیم شما روی تصمیم‌ها تمرکز کند، نه ورود داده.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card dark">
+        <div class="feat-icon">📊</div>
+        <h3>داشبورد لحظه‌ای</h3>
+        <p>جریان نقدی، سود و زیان و درآمد را به‌صورت زنده ببینید — بلافاصله پس از ثبت هر تراکنش به‌روز می‌شود.</p>
+      </div>
+      <div class="feat-card light">
+        <div class="feat-icon">🗂️</div>
+        <h3>آماده‌سازی مالیات</h3>
+        <p>رسیدها را سازمان‌دهی کنید، هزینه‌ها را دسته‌بندی نمایید و گزارش‌های آماده مالیات تهیه کنید. ریسک حسابرسی را کاهش دهید.</p>
+      </div>
+      <div class="feat-card light">
+        <div class="feat-icon">🧾</div>
+        <h3>صورت‌حساب هوشمند</h3>
+        <p>فاکتورهای حرفه‌ای را در ثانیه بسازید، ارسال کنید و پیگیری نمایید. یادآوری خودکار پرداخت‌های معوق را ۴۰٪ کاهش می‌دهد.</p>
+      </div>
+
+      <div class="feat-card dark">
+        <div class="feat-icon">🏦</div>
+        <h3>همگام‌سازی بانکی</h3>
+        <p>به بیش از ۱۰,۰۰۰ مؤسسه مالی متصل شوید؛ تراکنش‌ها خودکار وارد و دسته‌بندی می‌شوند.</p>
+      </div>
+      <div class="feat-card light">
+        <div class="feat-icon">📈</div>
+        <h3>گزارش‌های رشد</h3>
+        <p>گزارش‌های ماهانه، فصلی و سالانه متناسب با صنعت شما. عملکرد خود را با میانگین بخش مقایسه کنید.</p>
+      </div>
+      <div class="feat-card light">
+        <div class="feat-icon">👥</div>
+        <h3>دسترسی چندکاربره</h3>
+        <p>حسابدار، دفتردار یا تیم خود را با نقش‌های محدود دعوت کنید. تاریخچه کامل تغییرات همیشه در دسترس است.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section process">
+  <div class="wrap">
+    <div class="section-head on-green">
+      <span class="eyebrow eyebrow-on-green">نحوه کار</span>
+      <h2>دفاتر خود را در ساعت‌ها ببندید، نه هفته‌ها</h2>
+    </div>
+    <div class="process-grid">
+      <div class="step-card">
+        <div class="step-num">۰۱</div>
+        <div><h3>حساب‌های خود را متصل کنید</h3><p>حساب‌های بانکی، کارت‌های اعتباری و درگاه‌های پرداخت را وصل کنید. از بیش از ۱۰,۰۰۰ مؤسسه مالی پشتیبانی می‌کنیم.</p></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">۰۲</div>
+        <div><h3>بگذارید هوش مصنوعی داده‌ها را دسته‌بندی کند</h3><p>موتور یادگیری ماشین ما تراکنش‌ها را می‌خواند و کدهای حسابداری صحیح را با دقت بالا اعمال می‌کند.</p></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">۰۳</div>
+        <div><h3>بررسی و تأیید کنید</h3><p>در دقایقی نه ساعت‌ها، موارد پرچم‌گذاری‌شده را بررسی کنید، دسته‌بندی‌ها را تأیید نمایید و دفاتر را ببندید.</p></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">۰۴</div>
+        <div><h3>گزارش‌های زیبا به اشتراک بگذارید</h3><p>خروجی PDF یا اکسل بگیرید، یا ذی‌نفعان را با لینک اختصاصی به داشبورد زنده دعوت کنید.</p></div>
+      </div>
+    </div>
+    <div class="process-photo"><img src="{% static 'img/banner.avif' %}" alt=""></div>
+  </div>
+</section>
+
+<section class="section pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow eyebrow-on-cream">کاربری</span>
+      <h2>انتخاب نرم افزار مورد نیازتان</h2>
+      <p>هر پلن شامل ۱۴ روز آزمایش رایگان بدون نیاز به کارت اعتباری است.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card light">
+        <span class="price-tag">بازرگانی </span>
+        <div class="price-name">سطح بندی</div>
+        <span class="price-desc">برای تیم‌های بزرگ با نیازهای حسابداری پیچیده.</span>
+        <ul class="price-list">
+          <li><span class="check">✓</span> کاربران نامحدود</li>
+          <li><span class="check">✓</span> پشتیبانی اختصاصی شرکت</li>
+          <li><span class="check">✓</span> مدیر حساب اختصاصی</li>
+          <li><span class="check">✓</span> یکپارچه‌سازی سفارشی</li>
+          <li><span class="check">✓</span> خدمات SLA</li>
+          <li><span class="check">✓</span> نصب داخل سازمان</li>
+        </ul>
+        <a href="{% url 'infobazargani' %}" class="btn btn-outline-on-cream btn-block">دیدن محصول</a>
+      </div>
+      <div class="price-card dark">
+        <span class="price-tag">تولیدی</span>
+        <div class="price-name">سطح بندی</div>
+        <div class="price-amount">۴۹۰,۰۰۰ تومان</div>
+        <span class="price-period">نرم افزار خود را طبق نیاز خود شخصی سازی کنید </span>
+        <ul class="price-list">
+          <li><span class="check">✓</span> تا ۵ کاربر</li>
+          <li><span class="check">✓</span> تراکنش‌های نامحدود</li>
+          <li><span class="check">✓</span> ابزارهای آماده‌سازی مالیات</li>
+          <li><span class="check">✓</span> همگام‌سازی بانکی و تطبیق</li>
+          <li><span class="check">✓</span> پشتیبانی اولویت‌دار</li>
+          <li><span class="check">✓</span> فاکتورسازی سفارشی</li>
+        </ul>
+        <a href="{% url 'infotolidi' %}" class="btn btn-cream btn-block">دیدن محصول</a>
+      </div>
+      <div class="price-card light">
+        <span class="price-tag">خدماتی</span>
+        <div class="price-name">سطح بندی</div>
+        <span class="price-period">در ماه</span>
+        <span class="price-desc">برای فریلنسرها و کسب‌وکارهای کوچکی که می‌خواهند منظم کار کنند.</span>
+        <ul class="price-list">
+          <li><span class="check">✓</span> ۱ کاربر</li>
+          <li><span class="check">✓</span> تا ۵۰۰ تراکنش در ماه</li>
+          <li><span class="check">✓</span> صدور فاکتور و پیش‌فاکتور</li>
+          <li><span class="check">✓</span> گزارش‌گیری پایه</li>
+          <li><span class="check">✓</span> پشتیبانی ایمیلی</li>
+        </ul>
+        <a href="{% url 'infokhadamat' %}" class="btn btn-outline-on-cream btn-block">دیدن محصول</a>
+      </div>
+    </div>
+    <div style="margin-top: 20px;">
+      <div class="price-card dark" style="background: linear-gradient(120deg, rgb(0 0 0), #007401c9);border: 1px solid var(--glass-border);">
+        <span class="price-tag">شخسی سازی</span>
+        <div class="price-name">حرفه‌ای</div>
+        <div class="price-amount">بر اساس نیاز هایتان هزینه کنید</div>
+        <span class="price-period">نرم افزار خود را طبق نیاز خود شخصی سازی کنید </span>
+        <ul class="price-list price-listcustom">
+          <li><span class="check">✓</span> تا ۵ کاربر</li>
+          <li><span class="check">✓</span> تراکنش‌های نامحدود</li>
+          <li><span class="check">✓</span> ابزارهای آماده‌سازی مالیات</li>
+          <li><span class="check">✓</span> همگام‌سازی بانکی و تطبیق</li>
+          <li><span class="check">✓</span> پشتیبانی اولویت‌دار</li>
+          <li><span class="check">✓</span> فاکتورسازی سفارشی</li>
+        </ul>
+        <a href="{% url 'pricing' %}" class="btn btn-cream btn-block">انتخاب آیتم</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonials">
+  <div class="wrap">
+    <div class="section-head on-green center">
+      <span class="eyebrow eyebrow-on-green">نظرات مشتریان</span>
+      <h2>مورد علاقه تیم‌های مالی در سراسر کشور</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p class="test-quote">«همگام‌سازی بانکی به‌تنهایی چند ساعت در هفته صرفه‌جویی کرد. گزارش‌های زیبا برای جلسات هیئت‌مدیره کاملاً شفاف‌اند.»</p>
+        <div class="test-person"><div class="avatar">پ</div><div><b>پریا آنند</b><span>مدیرعامل، وار هاث</span></div></div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p class="test-quote">«دستیار مالیاتی متفکر شده، وقتی فصل مالیات می‌رسد همه‌چیز منظم است — دیگر درصد آخرسال هیچ سورپرایزی نداریم.»</p>
+        <div class="test-person"><div class="avatar">ک</div><div><b>کاضم هاشمی</b><span>بنیان‌گذار، دفتر معماری نیل</span></div></div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p class="test-quote">«حساب پرداز بستن حساب پایان ماه ما را از سه روز به چند ساعت رساند. کاش سال‌ها پیش تغییرش می‌دادیم.»</p>
+        <div class="test-person"><div class="avatar">س</div><div><b>سارا محمدی</b><span>مدیر مالی، گروه اصفهانک</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>آماده‌اید کنترل مالی‌تان را به دست بگیرید؟</h2>
+    <p>به بیش از ۴۸,۰۰۰ کسب‌وکاری که با حساب پرداز دفاتر منظم‌تری دارند بپیوندید.</p>
+    <div class="cta-btns">
+      <a href="{% url 'demo' %}" class="btn btn-dark">شروع آزمایش رایگان</a>
+      <button class="btn btn-outline-on-cream">رزرو دمو</button>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "pages/base.html" %}
+{% block title %}حساب پرداز | اخبار{% endblock %}
+{% load static %}
+{% block content %}
+<H1 hidden>نرم افزار</H1>
+<H2 hidden>حسابداری</H2>
+<H3 hidden>حساب پردازنرم افزار حسابداری</H3>
+<H4 hidden>برنامه حسابداری</H4>
+<H5 hidden> برنامه نرم‌افزار حسابداری</H5>
+<H6 hidden>نرم‌افزار مالی حسابداری</H6>
+<title hidden>برنامه حسابداری حساب پرداز</title>
+<section class="blog-hero">
+  <div class="dot-overlay"></div>
+  <div class="wrap">
+    <span class="eyebrow eyebrow-on-green">وبلاگ نوین پرداز</span>
+    <h1 style="margin-top:18px;">راهنمای حسابداری، مالیات و مدیریت کسب‌وکار</h1>
+    <p class="lead">مقالات، آموزش‌ها و تجربه‌های عملی تیم حساب پرداز برای بنیان‌گذاران، حسابداران و مدیران مالی.</p>
+    <div class="blog-search">
+      <input type="text" placeholder="جست‌وجو در مقالات...">
+      <button aria-label="جست‌وجو">🔍</button>
+    </div>
+    <div class="blog-cats">
+      <button class="btn btn-cream active">همه مقالات</button>
+      <button class="btn btn-outline-on-green">حسابداری</button>
+      <button class="btn btn-outline-on-green">مالیات</button>
+      <button class="btn btn-outline-on-green">نرم‌افزار</button>
+      <button class="btn btn-outline-on-green">کسب‌وکارهای کوچک</button>
+      <button class="btn btn-outline-on-green">اخبار محصول</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:64px;">
+  <div class="wrap">
+
+    <a href="#" class="blog-featured">
+      <div class="thumb t1"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiO1oGzVINRsWh7-d-VDLnMCvMpIfkbhxeH7E-ccgUtA&s=10" alt="حسلبداری"></div>
+      <div class="blog-featured-body">
+        <span class="post-tag">حسابداری</span>
+        <h2>۷ اشتباه رایج در بستن دفاتر پایان ماه (و راه رفع هرکدام)</h2>
+        <p>از تطبیق نشدن حساب بانکی تا فراموش‌کردن هزینه‌های تعهدی؛ نگاهی به رایج‌ترین اشتباهاتی که بستن دفاتر را کند می‌کنند و چک‌لیستی که تیم‌های مالی برای جلوگیری از آن‌ها استفاده می‌کنند.</p>
+        <div class="post-meta">
+          <div class="who">
+            <div class="avatar" style="border-radius:100px;display:flex;align-items:center;justify-content:center;font-weight:700;">س</div>
+            <span>سارا محمدی · مدیر محتوای مالی</span>
+          </div>
+          <span>۱۲ دقیقه مطالعه</span>
+        </div>
+      </div>
+    </a>
+
+    <div class="blog-grid">
+      {% for weblug in weblugs %}
+      <a href="{% url 'DEATAILWEBLUG' weblug.id %}" class="blog-card">
+        <div class="thumb t2"><img src="../../static/img/{{ weblug.img1 }}" alt="حسابداری برنامه و نرم افزار"></div>
+        <div class="blog-card-body">
+          <span class="post-tag">{{ weblug.daste }}</span>
+          <h3> {{ weblug.title}}</h3>
+          <p>{{ weblug.minp }}</p>
+          <div class="post-meta">
+            <div class="who"><div class="avatar">ک</div><span>{{ weblug.virast }}</span></div>
+            <span>{{ weblug.date }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor  %}
+
+
+    </div>
+
+    <div class="blog-loadmore">
+      <button class="btn btn-outline-on-cream">مشاهده مقالات بیشتر</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>مقالات جدید مستقیم توی ایمیل‌تان</h2>
+    <p>هر دو هفته یک‌بار، خلاصه‌ای از بهترین راهنماهای حسابداری و مالیات، بدون هرزنامه.</p>
+    <div class="cta-btns">
+      <input type="email" placeholder="ایمیل شما" style="padding:14px 20px;border-radius:5px;border:1px solid var(--line-on-cream);font-family:inherit;font-size:14px;min-width:260px;">
+      <button class="btn btn-dark">عضویت در خبرنامه</button>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,196 @@
+/* ===== حساب‌پرداز — صفحه چت پشتیبانی (سبک تلگرام) ===== */
+
+.chat-page {
+  max-width: 720px;
+  margin: 2rem auto;
+  background: var(--paper-soft, #fbf2e2);
+  border: 1px solid var(--line, rgba(16,44,38,.14));
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: min(78vh, 640px);
+}
+
+.chat-head {
+  background: var(--ink, #102c26);
+  color: var(--paper, #f7e7ce);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.chat-head-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(247, 231, 206, .14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chat-head-icon svg { display: block; }
+
+.chat-head h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.chat-head p {
+  font-size: .78rem;
+  margin: 2px 0 0;
+  color: rgba(247, 231, 206, .68);
+}
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-image: repeating-linear-gradient(
+    to bottom, transparent 0, transparent 43px,
+    rgba(16, 44, 38, .045) 43px, rgba(16, 44, 38, .045) 44px
+  );
+}
+
+.chat-box .empty-hint {
+  margin: auto;
+  text-align: center;
+  font-size: .85rem;
+  color: var(--muted, rgba(16,44,38,.58));
+}
+
+.chat-message {
+  max-width: 74%;
+  padding: 9px 14px 8px;
+  border-radius: 14px;
+  font-size: .88rem;
+  line-height: 1.7;
+  position: relative;
+}
+
+.chat-message strong {
+  display: block;
+  font-size: .7rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  opacity: .75;
+}
+
+.chat-message span {
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.chat-message small {
+  display: block;
+  font-size: .66rem;
+  margin-top: 4px;
+  opacity: .6;
+  text-align: left;
+}
+
+.chat-message.from-user {
+  align-self: flex-end;
+  background: var(--ink, #102c26);
+  color: var(--paper, #f7e7ce);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-message.from-admin {
+  align-self: flex-start;
+  background: #fff;
+  color: var(--ink, #102c26);
+  border: 1px solid var(--line, rgba(16,44,38,.14));
+  border-bottom-right-radius: 4px;
+}
+
+.chat-composer {
+  flex-shrink: 0;
+  border-top: 1px solid var(--line, rgba(16,44,38,.14));
+  background: var(--paper-soft, #fbf2e2);
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.chat-composer form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.chat-composer p {
+  margin: 0;
+  flex: 1;
+}
+
+.chat-composer label { display: none; }
+
+.chat-composer textarea,
+.chat-composer input[type="text"] {
+  width: 100%;
+  resize: none;
+  font-family: inherit;
+  font-size: .88rem;
+  padding: 10px 14px;
+  border: 1px solid var(--line, rgba(16,44,38,.14));
+  border-radius: 20px;
+  background: #fff;
+  color: var(--ink, #102c26);
+  outline: none;
+  max-height: 110px;
+}
+
+.chat-composer textarea:focus,
+.chat-composer input[type="text"]:focus {
+  border-color: var(--ink, #102c26);
+  box-shadow: 0 0 0 3px rgba(16, 44, 38, .1);
+}
+
+.chat-composer button {
+  flex-shrink: 0;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--ink, #102c26);
+  color: var(--paper, #f7e7ce);
+  font-size: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s ease, transform .05s ease;
+}
+
+.chat-composer button::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.chat-composer button:hover { background: var(--ink-2, #123823); }
+.chat-composer button:active { transform: scale(.95); }
+
+@media (max-width: 760px) {
+  .chat-page {
+    margin: 0;
+    height: 100vh;
+    border-radius: 0;
+    max-width: 100%;
+  }
+}

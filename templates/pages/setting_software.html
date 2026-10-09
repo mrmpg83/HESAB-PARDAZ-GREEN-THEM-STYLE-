@@ -1,0 +1,115 @@
+{% extends "pages/base.html" %}
+{% load static %}
+{% block title %}حساب پرداز | آموزش تنظیمات نرم‌افزار{% endblock %}
+{% block content %}
+<H1 hidden>نرم افزار</H1>
+<H2 hidden>حسابداری</H2>
+<H3 hidden>حساب پردازنرم افزار حسابداری</H3>
+<H4 hidden>برنامه حسابداری</H4>
+<H5 hidden> برنامه نرم‌افزار حسابداری</H5>
+<H6 hidden>نرم‌افزار مالی حسابداری</H6>
+<title hidden>برنامه حسابداری حساب پرداز</title>
+<section class="guide-hero">
+  <div class="dot-overlay"></div>
+  <div class="wrap">
+    <span class="eyebrow eyebrow-on-green">آموزش‌ها · تنظیمات نرم‌افزار حساب پرداز</span>
+    <h1>ست کردن دستور ها</h1>
+    <p class="lead">تنظیم کردن پارامتر های حیاطی نرم افزار برای راحتی استفادها, همه‌چیز را قدم‌به‌قدم و با مثال یاد بگیرید.</p>
+    <div class="guide-toc">
+      <a href="#signup">۰۱ تنظیم لوگو</a>
+      <a href="#parties">۰۲ ساختار فاکتور</a>
+      <a href="#invoice">۰۳ دسترسی سریع</a>
+      <a href="#bank">۰۴ تنظیم فاکتور فروش</a>
+      <a href="#reports">۰۵ پشتیبان گیری</a>
+      <a href="#settings">۰۶ تنظیمات و کاربران</a>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section bg-dark" id="signup">
+  <div class="wrap guide-inner">
+    <div class="guide-text">
+      <span class="guide-step-num">۰۱</span>
+      <h2>ساخت حساب کاربری در حساب پرداز</h2>
+      <p>شروع کار با حساب پرداز کمتر از دو دقیقه زمان می‌برد. کافی است شماره موبایل خود را وارد کنید، کد تایید را بزنید و اطلاعات اولیه کسب‌وکارتان را کامل کنید.</p>
+      <ul class="guide-list">
+        <li>ثبت‌نام فقط با شماره موبایل، بدون نیاز به ایمیل</li>
+        <li>تایید با کد پیامکی در چند ثانیه</li>
+        <li>وارد کردن نام کسب‌وکار و نوع فعالیت</li>
+        <li>دسترسی فوری به نسخه رایگان بدون نیاز به کارت بانکی</li>
+      </ul>
+    </div>
+    <div class="guide-mock">
+      <img src="{% static 'img/settingWarning.jpg' %}" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="guide-section bg-gold" id="parties">
+  <div class="wrap guide-inner reverse">
+    <div class="guide-text">
+      <span class="guide-step-num">۰۲</span>
+      <h2>ایجاد طرف حساب (مشتری و تامین‌کننده)</h2>
+      <p>پیش از صدور فاکتور، باید طرف حساب را در نرم‌افزار ثبت کنید. طرف حساب می‌تواند مشتری، تامین‌کننده یا هر شخص و شرکتی باشد که با او تراکنش مالی دارید.</p>
+      <ul class="guide-list">
+        <li>ثبت نام، شماره تماس و کد اقتصادی طرف حساب</li>
+        <li>دسته‌بندی به‌عنوان مشتری، تامین‌کننده یا هر دو</li>
+        <li>مشاهده مانده حساب هر طرف‌حساب در یک نگاه</li>
+        <li>جست‌وجوی سریع هنگام صدور فاکتور جدید</li>
+      </ul>
+    </div>
+    <div class="guide-mock">
+      <img src="{% static 'img/settingWarning2.jpg' %}" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="guide-section bg-dots" id="invoice">
+  <div class="wrap guide-inner">
+    <div class="guide-text">
+      <span class="guide-step-num">۰۳</span>
+      <h2>صدور فاکتور فروش و خرید</h2>
+      <p>فاکتور جدید را در چند کلیک بسازید؛ کالا یا خدمت را انتخاب کنید، تعداد و قیمت وارد شود و نرم‌افزار مالیات و جمع کل را خودش محاسبه می‌کند.</p>
+      <ul class="guide-list">
+        <li>انتخاب طرف حساب از لیست یا افزودن سریع طرف حساب جدید</li>
+        <li>افزودن ردیف کالا با جست‌وجوی نام یا بارکد</li>
+        <li>محاسبه خودکار تخفیف، مالیات و جمع کل فاکتور</li>
+        <li>ارسال فاکتور با پیامک یا لینک مستقیم برای مشتری</li>
+      </ul>
+    </div>
+    <div class="guide-mock">
+      <img src="{% static 'img/settingWarning3.jpg' %}" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="guide-section bg-mesh" id="bank">
+  <div class="wrap guide-inner reverse">
+    <div class="guide-text">
+      <span class="guide-step-num">۰۴</span>
+      <h2>همگام‌سازی بانکی و ثبت خودکار تراکنش</h2>
+      <p>حساب بانکی خود را یک‌بار به حساب پرداز وصل کنید تا تراکنش‌های جدید به‌صورت خودکار وارد نرم‌افزار شوند و دیگر نیازی به ثبت دستی نباشد.</p>
+      <ul class="guide-list">
+        <li>اتصال به بیش از ۱۰,۰۰۰ بانک و درگاه پرداخت</li>
+        <li>دسته‌بندی خودکار تراکنش‌ها با هوش مصنوعی</li>
+        <li>هشدار برای تراکنش‌های تطبیق‌نیافته با فاکتور</li>
+        <li>مغایرت‌گیری ماهانه با یک کلیک</li>
+      </ul>
+    </div>
+    <div class="guide-mock">
+      <img src="{% static 'img/settingWarning4.jpg' %}" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>همین حالا شروع کنید</h2>
+    <p>اگر هرگونه سوال و مشکلی در یادگیری داشته اید میتوانید از ویدیو آموزشی آپارت نرم افزار هم استفاده کنید</p>
+    <div class="cta-btns">
+      <button class="btn btn-dark">شروع رایگان</button>
+      <button class="btn btn-outline-on-cream">مشاهده ویدیوهای آموزشی</button>
+    </div>
+  </div>
+</section>
+{% endblock %}

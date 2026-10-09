@@ -1,0 +1,59 @@
+{% extends "pages/base.html" %}
+{% block title %}حساب پرداز | پنل چت ادمین{% endblock %}
+{% block content %}
+<style>
+   table a{
+        padding: 7px;
+        border-radius: 5px;
+        background-color: #000000e0;
+        color: chartreuse;
+    }
+    td{
+        padding: 10px;
+    }
+    table {
+        border-radius: 5px;
+        padding: 5px;
+        background-color: #afafaf;
+    }
+    @media(max-width:500px){
+        table {
+            font-size: x-small;
+        }
+    }
+</style>
+<div style="max-width: 700px;margin: 50px auto;">
+    <h1 style="text-align: center;">پنل چت ادمین</h1>
+    <span class="eyebrow" style="background-color: rgba(0, 95, 55, 0.616);margin-top: 70px;">لیست گفتگوهای پشتیبانی با کاربران:</span>
+
+    <table border="1" style="max-width: 700px;margin: 20px auto;width: 100%;">
+        <thead>
+            <tr>
+                <th>کاربر</th>
+                <th>آخرین پیام</th>
+                <th>پیام‌های خوانده‌نشده</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for conversation in conversations %}
+                <tr>
+                    <td>{{ conversation.user.username }}</td>
+                    <td>
+                        {% if conversation.last_message %}
+                            {{ conversation.last_message.text|truncatechars:40 }}
+                        {% else %}
+                            (بدون پیام)
+                        {% endif %}
+                    </td>
+                    <td>{{ conversation.unread_count_for_admin }}</td>
+                    <td><a href="{% url 'admin_chat_detail' conversation.pk %}">مشاهده و پاسخ</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">هنوز هیچ گفتگویی ثبت نشده است.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,687 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حساب‌پرداز — پنل مدیریت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ <link rel="stylesheet" href="{% static 'css/panelstyle.css' %}">
+
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="logo">
+    <div class="logo-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+    <div class="logo-name">حساب<span>‌پرداز</span></div>
+    <div class="logo-ver">admin</div>
+  </div>
+  <div class="nav">
+    <div class="nav-group">
+      <div class="nav-label">اصلی</div>
+      <div class="nav-item active" onclick="showPage('dashboard',this)"><i class="fa-solid fa-gauge-high"></i><span>داشبورد</span></div>
+      <div class="nav-item" onclick="showPage('customers',this)"><i class="fa-solid fa-users"></i><span>مشتریان</span><span class="nav-badge nb-blue">۳,۴۵۰</span></div>
+      <div class="nav-item" onclick="showPage('agents',this)"><i class="fa-solid fa-user-tie"></i><span>نمایندگان</span><span class="nav-badge nb-green">{{n}}</span></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">محصول</div>
+      <div class="nav-item" onclick="showPage('modules',this)"><i class="fa-solid fa-puzzle-piece"></i><span>نرم‌افزارهای مورد نیاز</span></div>
+      <div class="nav-item" onclick="showPage('pricing',this)"><i class="fa-solid fa-tags"></i><span>تعیین قیمت نسخه‌ها</span></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">آموزش</div>
+      <div class="nav-item" onclick="showPage('education',this)"><i class="fa-solid fa-graduation-cap"></i><span>دوره حسابداری</span><span class="nav-badge nb-red">۵۲۰</span></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">محتوا</div>
+      <div class="nav-item" onclick="showPage('blog',this)"><i class="fa-solid fa-newspaper"></i><span>وبلاگ</span><span class="nav-badge nb-green">{{w}}</span></div>
+    </div>
+  </div>
+  <div class="sidebar-bottom">
+    <div class="user-row">
+      <div class="avatar">مد</div>
+      <div class="user-info">
+        <div class="user-name">{{ user.username }}</div>
+        <div class="user-role">مدیر ارشد</div>
+      </div>
+      <i class="fa-solid fa-ellipsis-vertical" style="color:var(--muted);font-size:14px"></i>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="page-title" id="pageTitle">داشبورد</div>
+    <div class="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input placeholder="جستجو در پنل...">
+    </div>
+    <div class="tb-actions">
+      <select style="width:auto;padding:6px 10px;font-size:12px">
+        <option>این ماه</option><option>این هفته</option><option>امروز</option>
+      </select>
+      <div class="tb-btn"><i class="fa-solid fa-bell"></i><span class="dot"></span></div>
+      <button class="add-btn" onclick="openAddModal()"><i class="fa-solid fa-plus"></i>افزودن</button>
+    </div>
+  </div>
+
+  <!-- ===== PAGE: DASHBOARD ===== -->
+  <div class="page active" id="page-dashboard">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-glow" style="background:var(--accent)"></div>
+        <div class="stat-top"><div class="stat-icon si-blue"><i class="fa-solid fa-coins"></i></div><span class="stat-change sc-up">↑ 14.2%</span></div>
+        <div class="stat-val">۱۲۸M</div>
+        <div class="stat-label">درآمد کل (تومان)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-glow" style="background:var(--accent4)"></div>
+        <div class="stat-top"><div class="stat-icon si-green"><i class="fa-solid fa-users"></i></div><span class="stat-change sc-up">↑ 7.8%</span></div>
+        <div class="stat-val">۳,۴۵۰</div>
+        <div class="stat-label">مشتریان فعال</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-glow" style="background:var(--gold)"></div>
+        <div class="stat-top"><div class="stat-icon si-gold"><i class="fa-solid fa-user-tie"></i></div><span class="stat-change sc-up">↑ 3.1%</span></div>
+        <div class="stat-val">۸۶</div>
+        <div class="stat-label">نمایندگان فعال</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-glow" style="background:var(--pink)"></div>
+        <div class="stat-top"><div class="stat-icon si-purple"><i class="fa-solid fa-graduation-cap"></i></div><span class="stat-change sc-up">↑ 11%</span></div>
+        <div class="stat-val">۵۲۰</div>
+        <div class="stat-label">دانش‌آموزان دوره</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-hd"><div class="card-hd-title">آخرین مشتریان</div><button class="btn btn-ghost btn-sm" onclick="showPage('customers',null)">مشاهده همه</button></div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>مشتری</th><th>نسخه</th><th>تاریخ خرید</th><th>وضعیت</th></tr></thead>
+            <tbody>
+              <tr><td>شرکت پارس تجارت</td><td><span class="badge b-shipped">سازمانی</span></td><td>۱۴۰۳/۱۱/۲۵</td><td><span class="badge b-active">فعال</span></td></tr>
+              <tr><td>دفتر حسابداری مهرگان</td><td><span class="badge b-processing">حرفه‌ای</span></td><td>۱۴۰۳/۱۱/۲۴</td><td><span class="badge b-active">فعال</span></td></tr>
+              <tr><td>فروشگاه زنجیره‌ای آفتاب</td><td><span class="badge b-processing">حرفه‌ای</span></td><td>۱۴۰۳/۱۱/۲۳</td><td><span class="badge b-pending">در انتظار تمدید</span></td></tr>
+              <tr><td>رضا کریمی (فردی)</td><td><span class="badge b-paid">پایه</span></td><td>۱۴۰۳/۱۱/۲۲</td><td><span class="badge b-active">فعال</span></td></tr>
+              <tr><td>بازرگانی نوین سازان</td><td><span class="badge b-shipped">سازمانی</span></td><td>۱۴۰۳/۱۱/۲۰</td><td><span class="badge b-active">فعال</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="card-hd-title">فعالیت‌های اخیر</div></div>
+        <div class="activity-feed">
+          <div class="act-item"><div class="act-icon ai-blue"><i class="fa-solid fa-user-plus"></i></div><div class="act-text"><strong>مشتری جدید</strong> شرکت پارس تجارت نسخه سازمانی خریداری کرد<div class="act-time">۳ دقیقه پیش</div></div></div>
+          <div class="act-item"><div class="act-icon ai-green"><i class="fa-solid fa-user-tie"></i></div><div class="act-text"><strong>نماینده جدید</strong> علی رحیمی در اصفهان ثبت شد<div class="act-time">۲۰ دقیقه پیش</div></div></div>
+          <div class="act-item"><div class="act-icon ai-gold"><i class="fa-solid fa-rotate"></i></div><div class="act-text"><strong>تمدید لایسنس</strong> فروشگاه زنجیره‌ای آفتاب<div class="act-time">۴۰ دقیقه پیش</div></div></div>
+          <div class="act-item"><div class="act-icon ai-purple"><i class="fa-solid fa-graduation-cap"></i></div><div class="act-text"><strong>دانش‌آموز جدید</strong> در دوره حسابداری پیشرفته ثبت‌نام کرد<div class="act-time">۱ ساعت پیش</div></div></div>
+          <div class="act-item"><div class="act-icon ai-red"><i class="fa-solid fa-newspaper"></i></div><div class="act-text"><strong>مقاله جدید</strong> «آموزش صدور فاکتور در حساب‌پرداز» منتشر شد<div class="act-time">۲ ساعت پیش</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE: CUSTOMERS (مشتریان نرم‌افزار) ===== -->
+  <div class="page" id="page-customers">
+    <div class="grid-2" style="margin-bottom:14px">
+      <div class="card">
+        <div class="card-hd"><div class="card-hd-title">مشتریان برتر</div></div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="customer-card">
+            <div class="cust-avatar" style="background:linear-gradient(135deg,#4F8EF7,#7B5CF0)">پت</div>
+            <div class="cust-info">
+              <div class="cust-name">شرکت پارس تجارت</div>
+              <div class="cust-email">info@parstejarat.ir</div>
+              <div class="cust-stats">
+                <div class="cust-stat"><strong>۳</strong>شعبه</div>
+                <div class="cust-stat"><strong>۵۸M</strong>مجموع خرید</div>
+                <div class="cust-stat"><strong>سازمانی</strong>نسخه</div>
+              </div>
+            </div>
+            <span class="badge b-shipped">سازمانی</span>
+          </div>
+          <div class="customer-card">
+            <div class="cust-avatar" style="background:linear-gradient(135deg,#2ECC9A,#4F8EF7)">مه</div>
+            <div class="cust-info">
+              <div class="cust-name">دفتر حسابداری مهرگان</div>
+              <div class="cust-email">mehregan.acc@gmail.com</div>
+              <div class="cust-stats">
+                <div class="cust-stat"><strong>۱</strong>شعبه</div>
+                <div class="cust-stat"><strong>۲۲M</strong>مجموع خرید</div>
+                <div class="cust-stat"><strong>حرفه‌ای</strong>نسخه</div>
+              </div>
+            </div>
+            <span class="badge b-processing">حرفه‌ای</span>
+          </div>
+          <div class="customer-card">
+            <div class="cust-avatar" style="background:linear-gradient(135deg,#F5A623,#F75F5F)">آف</div>
+            <div class="cust-info">
+              <div class="cust-name">فروشگاه زنجیره‌ای آفتاب</div>
+              <div class="cust-email">aftab.chain@yahoo.com</div>
+              <div class="cust-stats">
+                <div class="cust-stat"><strong>۶</strong>شعبه</div>
+                <div class="cust-stat"><strong>۴۱M</strong>مجموع خرید</div>
+                <div class="cust-stat"><strong>حرفه‌ای</strong>نسخه</div>
+              </div>
+            </div>
+            <span class="badge b-processing">حرفه‌ای</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="card-hd-title">درخواست مشتریان</div></div>
+        <table class="request">
+          <thead><tr><th>نام متقاضی</th><th>نام کسب و کار</th><th>تلفن</th><th>آدرس</th><th>نوع درخواست</th><th>حذف درخواست</th><th>تایید درخواست</th></tr></thead>
+          <tbody id="agentTableBody">
+            {% for i in lastForm %}
+            <tr><td>{{i.firstName}}{{i.lastname}}</td><td>{{i.businessName}}</td><td>{{i.phone}}</td><td>{{i.address}}</td><td>{{i.version}}</td><td> <a href="{% url 'deletelastForm' i.id %}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></td>
+              <td>
+                <!-- اینجا قرار بگیره -->
+                <form method="post" action="{% url 'approve_request' i.id %}" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-success btn-sm">
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-hd-title">همه مشتریان</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-ghost btn-sm"><i class="fa-solid fa-file-export"></i>خروجی</button>
+          <button class="btn btn-primary btn-sm" onclick="openModal('addCustomerModal')"><i class="fa-solid fa-plus"></i>مشتری جدید</button>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>نام / شرکت</th><th>تلفن</th><th>نسخه خریداری‌شده</th><th>تاریخ خرید</th><th>تاریخ انقضا</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+          <tbody id="customerTableBody">
+            {% for i in customer %}
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:26px;height:26px;font-size:10px">پت</div>{{i.businessName}}</div></td><td>021-88451200</td><td><span class="badge b-shipped">سازمانی</span></td><td>{{i.created_at}}</td><td>۱۴۰۴/۱۱/۲۵</td><td><span class="badge b-active">فعال</span></td><td><button class="btn btn-ghost btn-sm">ویرایش</button> <button class="btn btn-ghost btn-sm">تمدید</button></td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE: AGENTS (نمایندگان) ===== -->
+  <div class="page" id="page-agents">
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-hd-title">لیست نمایندگان</div>
+        <button class="btn btn-primary btn-sm" onclick="openModal('addAgentModal')"><i class="fa-solid fa-plus"></i>نماینده جدید</button>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>نام نماینده</th><th>استان</th><th>تلفن</th><th>تعداد فروش</th><th>درصد کمیسیون</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+          <tbody id="agentTableBody">
+            {% for agent in agent %}
+            <tr><td>{{agent.firstName}} {{agent.lastName}}</td><td>{{agent.ostan}}</td><td>{{agent.phoneNumber}}</td><td>۴۲</td><td>۱۵٪</td><td><span class="badge b-active">فعال</span></td><td><button class="btn btn-ghost btn-sm">ویرایش</button> <a href="{% url 'deleteagent' agent.id %}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE: MODULES (نرم‌افزارهای مورد نیاز) ===== -->
+  <div class="page" id="page-modules">
+    <div class="card-hd" style="padding:0;margin-bottom:14px">
+      <div><div class="card-hd-title" style="font-size:14px">پیش‌نیازها و ماژول‌های مورد نیاز برنامه</div><div class="card-hd-sub">نرم‌افزارها و کتابخانه‌هایی که برای اجرای صحیح حساب‌پرداز لازم هستند</div></div>
+      <button class="btn btn-primary btn-sm" onclick="openModal('addModuleModal')"><i class="fa-solid fa-plus"></i>افزودن نرم‌افزار</button>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div class="card-hd-title">جدول پیش‌نیازها</div></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>نام نرم‌افزار</th><th>نسخه</th><th>نوع</th><th>لینک دانلود</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+          <tbody>
+           {% for DownloadRequirements in downloadRequirements %}
+            <tr><td>{{DownloadRequirements.nameApp}}</td><td>{{DownloadRequirements.description}}</td><td><span class="badge b-canceled">الزامی</span></td><td style="color:var(--accent)">دانلود</td><td><span class="badge b-active">به‌روز</span></td><td><button class="btn btn-ghost btn-sm">ویرایش</button></td></tr>
+           {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE: PRICING (تعیین قیمت نسخه‌ها) ===== -->
+  <div class="page" id="page-pricing">
+      <h2 style="margin-bottom: 10px;">بازرگانی :</h2>
+    <div class="pricing-grid" style="margin-bottom:16px">
+      <div class="pricing-card">
+        <div class="pricing-badge">نسخه پایه</div>
+        <div class="pricing-name">اقتصادی</div>
+        <div class="pricing-desc">مناسب فروشگاه‌ها و کسب‌وکارهای کوچک</div>
+        <div class="pricing-price-row"><input value="2,400,000" id="priceBasic"><span class="pricing-unit">تومان / سال</span></div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-circle-check"></i>صدور فاکتور فروش و خرید</li>
+          <li><i class="fa-solid fa-circle-check"></i>مدیریت انبار ساده</li>
+          <li><i class="fa-solid fa-circle-check"></i>گزارش‌های پایه مالی</li>
+          <li><i class="fa-solid fa-circle-check"></i>پشتیبانی از ۱ کاربر</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="savePricing('پایه')"><i class="fa-solid fa-check"></i>ذخیره تغییرات</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge" style="background:rgba(123,92,240,.18);color:var(--accent2)">پرطرفدارترین</div>
+        <div class="pricing-name">پیشنهادی</div>
+        <div class="pricing-desc">مناسب شرکت‌ها و دفاتر حسابداری</div>
+        <div class="pricing-price-row"><input value="6,800,000" id="priceProfessional"><span class="pricing-unit">تومان / سال</span></div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-circle-check"></i>همه امکانات نسخه پایه</li>
+          <li><i class="fa-solid fa-circle-check"></i>حسابداری چندشعبه‌ای</li>
+          <li><i class="fa-solid fa-circle-check"></i>گزارش‌های تحلیلی پیشرفته</li>
+          <li><i class="fa-solid fa-circle-check"></i>پشتیبانی از ۵ کاربر همزمان</li>
+          <li><i class="fa-solid fa-circle-check"></i>پشتیبانی تلفنی اولویت‌دار</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="savePricing('حرفه‌ای')"><i class="fa-solid fa-check"></i>ذخیره تغییرات</button>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-badge" style="background:rgba(46,204,154,.15);color:var(--accent4)">نسخه سازمانی</div>
+        <div class="pricing-name">حرفه‌ای</div>
+        <div class="pricing-desc">مناسب سازمان‌ها و شرکت‌های بزرگ</div>
+        <div class="pricing-price-row"><input value="18,500,000" id="priceEnterprise"><span class="pricing-unit">تومان / سال</span></div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-circle-check"></i>همه امکانات نسخه حرفه‌ای</li>
+          <li><i class="fa-solid fa-circle-check"></i>کاربران و شعب نامحدود</li>
+          <li><i class="fa-solid fa-circle-check"></i>اتصال به API و یکپارچه‌سازی</li>
+          <li><i class="fa-solid fa-circle-check"></i>مدیر حساب اختصاصی</li>
+          <li><i class="fa-solid fa-circle-check"></i>SLA پشتیبانی ۲۴/۷</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="savePricing('سازمانی')"><i class="fa-solid fa-check"></i>ذخیره تغییرات</button>
+      </div>
+    </div>
+
+
+      <h2 style="margin-bottom: 10px;">تولیدی :</h2>
+    <div class="pricing-grid" style="margin-bottom:16px">
+      <div class="pricing-card">
+        <div class="pricing-badge">نسخه پایه</div>
+        <div class="pricing-name">اقتصادی</div>
+        <div class="pricing-desc">مناسب فروشگاه‌ها و کسب‌وکارهای کوچک</div>
+        <div class="pricing-price-row"><input value="2,400,000" id="priceBasic"><span class="pricing-unit">تومان / سال</span></div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-circle-check"></i>صدور فاکتور فروش و خرید</li>
+          <li><i class="fa-solid fa-circle-check"></i>مدیریت انبار ساده</li>
+          <li><i class="fa-solid fa-circle-check"></i>گزارش‌های پایه مالی</li>
+          <li><i class="fa-solid fa-circle-check"></i>پشتیبانی از ۱ کاربر</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="savePricing('پایه')"><i class="fa-solid fa-check"></i>ذخیره تغییرات</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge" style="background:rgba(123,92,240,.18);color:var(--accent2)">پرطرفدارترین</div>
+        <div class="pricing-name">پیشنهادی</div>
+        <div class="pricing-desc">مناسب شرکت‌ها و دفاتر حسابداری</div>
+        <div class="pricing-price-row"><input value="6,800,000" id="priceProfessional"><span class="pricing-unit">تومان / سال</span></div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-circle-check"></i>همه امکانات نسخه پایه</li>
+          <li><i class="fa-solid fa-circle-check"></i>حسابداری چندشعبه‌ای</li>
+          <li><i class="fa-solid fa-circle-check"></i>گزارش‌های تحلیلی پیشرفته</li>
+          <li><i class="fa-solid fa-circle-check"></i>پشتیبانی از ۵ کاربر همزمان</li>
+          <li><i class="fa-solid fa-circle-check"></i>پشتیبانی تلفنی اولویت‌دار</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="savePricing('حرفه‌ای')"><i class="fa-solid fa-check"></i>ذخیره تغییرات</button>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-badge" style="background:rgba(46,204,154,.15);color:var(--accent4)">نسخه سازمانی</div>
+        <div class="pricing-name">حرفه ای</div>
+        <div class="pricing-desc">مناسب سازمان‌ها و شرکت‌های بزرگ</div>
+        <div class="pricing-price-row"><input value="18,500,000" id="priceEnterprise"><span class="pricing-unit">تومان / سال</span></div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-circle-check"></i>همه امکانات نسخه حرفه‌ای</li>
+          <li><i class="fa-solid fa-circle-check"></i>کاربران و شعب نامحدود</li>
+          <li><i class="fa-solid fa-circle-check"></i>اتصال به API و یکپارچه‌سازی</li>
+          <li><i class="fa-solid fa-circle-check"></i>مدیر حساب اختصاصی</li>
+          <li><i class="fa-solid fa-circle-check"></i>SLA پشتیبانی ۲۴/۷</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="savePricing('سازمانی')"><i class="fa-solid fa-check"></i>ذخیره تغییرات</button>
+      </div>
+    </div>
+
+      <h2 style="margin-bottom: 10px;">خدماتی :</h2>
+    <div class="pricing-grid" style="margin-bottom:16px">
+      <div class="pricing-card">
+        <div class="pricing-badge">نسخه پایه</div>
+        <div class="pricing-name">اقتصادی</div>
+        <div class="pricing-desc">مناسب فروشگاه‌ها و کسب‌وکارهای کوچک</div>
+        <div class="pricing-price-row"><input value="2,400,000" id="priceBasic"><span class="pricing-unit">تومان / سال</span></div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-circle-check"></i>صدور فاکتور فروش و خرید</li>
+          <li><i class="fa-solid fa-circle-check"></i>مدیریت انبار ساده</li>
+          <li><i class="fa-solid fa-circle-check"></i>گزارش‌های پایه مالی</li>
+          <li><i class="fa-solid fa-circle-check"></i>پشتیبانی از ۱ کاربر</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="savePricing('پایه')"><i class="fa-solid fa-check"></i>ذخیره تغییرات</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge" style="background:rgba(123,92,240,.18);color:var(--accent2)">پرطرفدارترین</div>
+        <div class="pricing-name">پیشنهادی</div>
+        <div class="pricing-desc">مناسب شرکت‌ها و دفاتر حسابداری</div>
+        <div class="pricing-price-row"><input value="6,800,000" id="priceProfessional"><span class="pricing-unit">تومان / سال</span></div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-circle-check"></i>همه امکانات نسخه پایه</li>
+          <li><i class="fa-solid fa-circle-check"></i>حسابداری چندشعبه‌ای</li>
+          <li><i class="fa-solid fa-circle-check"></i>گزارش‌های تحلیلی پیشرفته</li>
+          <li><i class="fa-solid fa-circle-check"></i>پشتیبانی از ۵ کاربر همزمان</li>
+          <li><i class="fa-solid fa-circle-check"></i>پشتیبانی تلفنی اولویت‌دار</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="savePricing('حرفه‌ای')"><i class="fa-solid fa-check"></i>ذخیره تغییرات</button>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-badge" style="background:rgba(46,204,154,.15);color:var(--accent4)">نسخه سازمانی</div>
+        <div class="pricing-name">حرفه ای</div>
+        <div class="pricing-desc">مناسب سازمان‌ها و شرکت‌های بزرگ</div>
+        <div class="pricing-price-row"><input value="18,500,000" id="priceEnterprise"><span class="pricing-unit">تومان / سال</span></div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-circle-check"></i>همه امکانات نسخه حرفه‌ای</li>
+          <li><i class="fa-solid fa-circle-check"></i>کاربران و شعب نامحدود</li>
+          <li><i class="fa-solid fa-circle-check"></i>اتصال به API و یکپارچه‌سازی</li>
+          <li><i class="fa-solid fa-circle-check"></i>مدیر حساب اختصاصی</li>
+          <li><i class="fa-solid fa-circle-check"></i>SLA پشتیبانی ۲۴/۷</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="savePricing('سازمانی')"><i class="fa-solid fa-check"></i>ذخیره تغییرات</button>
+      </div>
+    </div>
+  </div>
+  <!-- ===== PAGE: EDUCATION (دوره حسابداری و دانش‌آموزان) ===== -->
+  <div class="page" id="page-education">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-top"><div class="stat-icon si-blue"><i class="fa-solid fa-graduation-cap"></i></div></div><div class="stat-val">۵۲۰</div><div class="stat-label">کل دانش‌آموزان</div></div>
+      <div class="stat-card"><div class="stat-top"><div class="stat-icon si-green"><i class="fa-solid fa-chalkboard"></i></div></div><div class="stat-val">۳</div><div class="stat-label">دوره‌های فعال</div></div>
+      <div class="stat-card"><div class="stat-top"><div class="stat-icon si-gold"><i class="fa-solid fa-circle-check"></i></div><span class="stat-change sc-up">↑ 6%</span></div><div class="stat-val">۷۸%</div><div class="stat-label">نرخ تکمیل دوره</div></div>
+      <div class="stat-card"><div class="stat-top"><div class="stat-icon si-purple"><i class="fa-solid fa-star"></i></div></div><div class="stat-val">۴.۶</div><div class="stat-label">میانگین امتیاز</div></div>
+    </div>
+
+    <div class="card-hd" style="padding:0;margin-bottom:12px">
+      <div class="card-hd-title" style="font-size:14px">دوره‌های آموزشی</div>
+      <button class="btn btn-primary btn-sm" onclick="openModal('addCourseModal')"><i class="fa-solid fa-plus"></i>دوره جدید</button>
+    </div>
+    <div class="grid-3" style="margin-bottom:16px">
+      <div class="course-card">
+        <div class="course-top">
+          <div><div class="course-title">دوره مقدماتی حسابداری</div><div class="course-meta">مدرس: مهندس زارعی</div></div>
+          <span class="badge b-active">فعال</span>
+        </div>
+        <div class="course-meta">۲۱۰ دانش‌آموز · ۱۲ جلسه</div>
+        <div class="course-progress-row"><div class="progress"><div class="progress-bar" style="width:82%"></div></div><span style="font-size:11px;font-weight:700">۸۲٪</span></div>
+        <div style="margin-top:12px;display:flex;gap:6px"><button class="btn btn-ghost btn-sm">ویرایش</button><button class="btn btn-ghost btn-sm">مشاهده دانش‌آموزان</button></div>
+      </div>
+      <div class="course-card">
+        <div class="course-top">
+          <div><div class="course-title">حسابداری با حساب‌پرداز</div><div class="course-meta">مدرس: خانم صادقی</div></div>
+          <span class="badge b-active">فعال</span>
+        </div>
+        <div class="course-meta">۱۸۵ دانش‌آموز · ۸ جلسه</div>
+        <div class="course-progress-row"><div class="progress"><div class="progress-bar" style="width:64%"></div></div><span style="font-size:11px;font-weight:700">۶۴٪</span></div>
+        <div style="margin-top:12px;display:flex;gap:6px"><button class="btn btn-ghost btn-sm">ویرایش</button><button class="btn btn-ghost btn-sm">مشاهده دانش‌آموزان</button></div>
+      </div>
+      <div class="course-card">
+        <div class="course-top">
+          <div><div class="course-title">دوره پیشرفته مالیاتی</div><div class="course-meta">مدرس: دکتر کاظمی</div></div>
+          <span class="badge b-pending">در حال برگزاری</span>
+        </div>
+        <div class="course-meta">۱۲۵ دانش‌آموز · ۱۰ جلسه</div>
+        <div class="course-progress-row"><div class="progress"><div class="progress-bar" style="width:38%"></div></div><span style="font-size:11px;font-weight:700">۳۸٪</span></div>
+        <div style="margin-top:12px;display:flex;gap:6px"><button class="btn btn-ghost btn-sm">ویرایش</button><button class="btn btn-ghost btn-sm">مشاهده دانش‌آموزان</button></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-hd-title">لیست دانش‌آموزان</div>
+        <button class="btn btn-primary btn-sm" onclick="openModal('addStudentModal')"><i class="fa-solid fa-plus"></i>دانش‌آموز جدید</button>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>نام دانش‌آموز</th><th>دوره</th><th>تاریخ ثبت‌نام</th><th>پیشرفت</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+          <tbody id="studentTableBody">
+            <tr><td>مریم کاظمی</td><td>دوره مقدماتی حسابداری</td><td>۱۴۰۳/۰۹/۱۰</td><td style="min-width:120px"><div class="progress"><div class="progress-bar" style="width:90%"></div></div></td><td><span class="badge b-active">در حال گذراندن</span></td><td><button class="btn btn-ghost btn-sm">ویرایش</button></td></tr>
+            <tr><td>امیرحسین رضوی</td><td>حسابداری با حساب‌پرداز</td><td>۱۴۰۳/۱۰/۰۱</td><td style="min-width:120px"><div class="progress"><div class="progress-bar" style="width:64%"></div></div></td><td><span class="badge b-active">در حال گذراندن</span></td><td><button class="btn btn-ghost btn-sm">ویرایش</button></td></tr>
+            <tr><td>زهرا موسوی</td><td>دوره پیشرفته مالیاتی</td><td>۱۴۰۳/۱۱/۰۵</td><td style="min-width:120px"><div class="progress"><div class="progress-bar" style="width:20%"></div></div></td><td><span class="badge b-pending">شروع دوره</span></td><td><button class="btn btn-ghost btn-sm">ویرایش</button></td></tr>
+            <tr><td>محمد قاسمی</td><td>دوره مقدماتی حسابداری</td><td>۱۴۰۳/۰۸/۲۲</td><td style="min-width:120px"><div class="progress"><div class="progress-bar" style="width:100%;background:var(--accent4)"></div></div></td><td><span class="badge b-paid">تکمیل شده</span></td><td><button class="btn btn-ghost btn-sm">ویرایش</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- ===== PAGE: BLOG ===== -->
+  <div class="page" id="page-blog">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-top"><div class="stat-icon si-blue"><i class="fa-solid fa-newspaper"></i></div></div><div class="stat-val">۶</div><div class="stat-label">مقاله منتشرشده</div></div>
+      <div class="stat-card"><div class="stat-top"><div class="stat-icon si-gold"><i class="fa-solid fa-pen-to-square"></i></div></div><div class="stat-val">۲</div><div class="stat-label">پیش‌نویس</div></div>
+      <div class="stat-card"><div class="stat-top"><div class="stat-icon si-green"><i class="fa-solid fa-eye"></i></div><span class="stat-change sc-up">↑ 22%</span></div><div class="stat-val">۱۴,۸۰۰</div><div class="stat-label">بازدید این ماه</div></div>
+      <div class="stat-card"><div class="stat-top"><div class="stat-icon si-purple"><i class="fa-solid fa-comments"></i></div></div><div class="stat-val">۸۴</div><div class="stat-label">کامنت‌ها</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-hd">
+        <div class="card-hd-title">مقالات وبلاگ</div>
+        <button class="btn btn-primary btn-sm" onclick="openModal('blogWriteModal')"><i class="fa-solid fa-plus"></i>مقاله جدید</button>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>عنوان</th><th>دسته‌بندی</th><th>نویسنده</th><th>تاریخ</th><th>بازدید</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+          <tbody id="blogTableBody">
+          {% for weblug in weblugs %}
+            <tr>
+              <td><div style="font-weight:600;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{weblug.title}}</div><div style="font-size:10px;color:var(--muted);margin-top:2px">۵ دقیقه مطالعه</div></td>
+              <td><span class="badge b-shipped">{{ weblug.daste }}</span></td><td>تیم حساب‌پرداز</td><td>{{ weblug.date }}</td><td>۲,۴۸۰</td>
+              <td><span class="badge b-active">منتشرشده</span></td>
+              <td style="display:flex;gap:6px;padding:10px 0"><button class="btn btn-ghost btn-sm" onclick="openEditBlog(0)"><i class="fa-solid fa-pen"></i>ویرایش</button><button class="btn btn-danger btn-sm" onclick="deleteBlogRow(this)"><i class="fa-solid fa-trash"></i></button></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<!-- ===== MODALS ===== -->
+
+<!-- QUICK ADD MODAL -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">افزودن سریع</div>
+      <div class="modal-close" onclick="closeModal('addModal')"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <button class="btn btn-ghost" style="padding:20px;flex-direction:column;gap:8px;border-radius:12px" onclick="closeModal('addModal');showPage('customers',null);openModal('addCustomerModal')">
+        <i class="fa-solid fa-user-plus" style="font-size:24px;color:var(--accent)"></i>
+        <span>مشتری جدید</span>
+      </button>
+      <button class="btn btn-ghost" style="padding:20px;flex-direction:column;gap:8px;border-radius:12px" onclick="closeModal('addModal');showPage('agents',null);openModal('addAgentModal')">
+        <i class="fa-solid fa-user-tie" style="font-size:24px;color:var(--accent4)"></i>
+        <span>نماینده جدید</span>
+      </button>
+      <button class="btn btn-ghost" style="padding:20px;flex-direction:column;gap:8px;border-radius:12px" onclick="closeModal('addModal');showPage('education',null);openModal('addStudentModal')">
+        <i class="fa-solid fa-graduation-cap" style="font-size:24px;color:var(--accent2)"></i>
+        <span>دانش‌آموز جدید</span>
+      </button>
+      <button class="btn btn-ghost" style="padding:20px;flex-direction:column;gap:8px;border-radius:12px" onclick="closeModal('addModal');showPage('blog',null);openModal('blogWriteModal')">
+        <i class="fa-solid fa-newspaper" style="font-size:24px;color:var(--gold)"></i>
+        <span>مقاله جدید</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD CUSTOMER MODAL -->
+<div class="modal-overlay" id="addCustomerModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">مشتری جدید</div>
+      <div class="modal-close" onclick="closeModal('addCustomerModal')"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>نام مشتری / شرکت</label><input placeholder="مثال: شرکت پارس تجارت" /></div></div>
+    <div class="form-row cols-2">
+      <div class="form-group"><label>تلفن</label><input placeholder="09xxxxxxxxx" /></div>
+      <div class="form-group"><label>ایمیل</label><input type="email" placeholder="example@mail.com" /></div>
+    </div>
+    <div class="form-row cols-2">
+      <div class="form-group"><label>نسخه انتخابی</label><select><option>پایه</option><option>حرفه‌ای</option><option>سازمانی</option></select></div>
+      <div class="form-group"><label>مدت اشتراک</label><select><option>۱ ساله</option><option>۶ ماهه</option><option>دائمی</option></select></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>یادداشت</label><textarea placeholder="توضیحات تکمیلی درباره مشتری..."></textarea></div></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('addCustomerModal')">انصراف</button>
+      <button class="btn btn-primary" onclick="closeModal('addCustomerModal');showToast('مشتری جدید با موفقیت اضافه شد')"><i class="fa-solid fa-check"></i>ذخیره مشتری</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD AGENT MODAL -->
+<div class="modal-overlay" id="addAgentModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">نماینده جدید</div>
+      <div class="modal-close" onclick="closeModal('addAgentModal')"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>نام نماینده</label><input placeholder="نام و نام خانوادگی" /></div></div>
+    <div class="form-row cols-2">
+      <div class="form-group"><label>شهر</label><input placeholder="مثال: اصفهان" /></div>
+      <div class="form-group"><label>تلفن</label><input placeholder="09xxxxxxxxx" /></div>
+    </div>
+    <div class="form-row cols-2">
+      <div class="form-group"><label>ایمیل</label><input type="email" placeholder="example@mail.com" /></div>
+      <div class="form-group"><label>درصد کمیسیون</label><input type="number" placeholder="مثال: 12" /></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>وضعیت</label><select><option>فعال</option><option>غیرفعال</option></select></div></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('addAgentModal')">انصراف</button>
+      <button class="btn btn-primary" onclick="closeModal('addAgentModal');showToast('نماینده جدید با موفقیت اضافه شد')"><i class="fa-solid fa-check"></i>ذخیره نماینده</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD/EDIT MODULE MODAL -->
+<div class="modal-overlay" id="addModuleModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">افزودن نرم‌افزار مورد نیاز</div>
+      <div class="modal-close" onclick="closeModal('addModuleModal')"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>نام نرم‌افزار</label><input placeholder="مثال: SQL Server" /></div></div>
+    <div class="form-row cols-2">
+      <div class="form-group"><label>نسخه مورد نیاز</label><input placeholder="مثال: 2019 یا بالاتر" /></div>
+      <div class="form-group"><label>نوع</label><select><option>الزامی</option><option>اختیاری</option></select></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>لینک دانلود</label><input placeholder="https://" /></div></div>
+    <div class="form-row"><div class="form-group"><label>توضیحات</label><textarea placeholder="توضیح کوتاه درباره کاربرد این نرم‌افزار..."></textarea></div></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('addModuleModal')">انصراف</button>
+      <button class="btn btn-primary" onclick="closeModal('addModuleModal');showToast('نرم‌افزار جدید اضافه شد')"><i class="fa-solid fa-check"></i>ذخیره</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD COURSE MODAL -->
+<div class="modal-overlay" id="addCourseModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">دوره جدید</div>
+      <div class="modal-close" onclick="closeModal('addCourseModal')"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>عنوان دوره</label><input placeholder="مثال: دوره مقدماتی حسابداری" /></div></div>
+    <div class="form-row cols-2">
+      <div class="form-group"><label>مدرس</label><input placeholder="نام مدرس" /></div>
+      <div class="form-group"><label>ظرفیت</label><input type="number" placeholder="مثال: 200" /></div>
+    </div>
+    <div class="form-row cols-2">
+      <div class="form-group"><label>تعداد جلسات</label><input type="number" placeholder="مثال: 12" /></div>
+      <div class="form-group"><label>شهریه (تومان)</label><input type="number" placeholder="0" /></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>توضیحات دوره</label><textarea placeholder="سرفصل‌ها و توضیحات دوره..."></textarea></div></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('addCourseModal')">انصراف</button>
+      <button class="btn btn-primary" onclick="closeModal('addCourseModal');showToast('دوره جدید ایجاد شد')"><i class="fa-solid fa-check"></i>ذخیره دوره</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD STUDENT MODAL -->
+<div class="modal-overlay" id="addStudentModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">دانش‌آموز جدید</div>
+      <div class="modal-close" onclick="closeModal('addStudentModal')"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>نام دانش‌آموز</label><input placeholder="نام و نام خانوادگی" /></div></div>
+    <div class="form-row cols-2">
+      <div class="form-group"><label>تلفن</label><input placeholder="09xxxxxxxxx" /></div>
+      <div class="form-group"><label>ایمیل</label><input type="email" placeholder="example@mail.com" /></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>دوره</label><select><option>دوره مقدماتی حسابداری</option><option>حسابداری با حساب‌پرداز</option><option>دوره پیشرفته مالیاتی</option></select></div></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('addStudentModal')">انصراف</button>
+      <button class="btn btn-primary" onclick="closeModal('addStudentModal');showToast('دانش‌آموز جدید ثبت شد')"><i class="fa-solid fa-check"></i>ثبت دانش‌آموز</button>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG WRITE/EDIT MODAL -->
+<div class="modal-overlay" id="blogWriteModal">
+  <div class="modal" style="width:660px;max-width:97vw">
+    <div class="modal-header">
+      <div class="modal-title" id="blogModalTitle">مقاله جدید</div>
+      <div class="modal-close" onclick="closeModal('blogWriteModal')"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>عنوان مقاله</label><input id="blogTitleInput" placeholder="عنوان جذاب مقاله را بنویسید..." /></div></div>
+    <div class="form-row cols-3">
+      <div class="form-group"><label>دسته‌بندی</label><select id="blogCatInput"><option>آموزش</option><option>نکات حسابداری</option><option>راهنما</option><option>اخبار محصول</option></select></div>
+      <div class="form-group"><label>نویسنده</label><input id="blogAuthorInput" value="تیم حساب‌پرداز" /></div>
+      <div class="form-group"><label>زمان مطالعه</label><input id="blogReadInput" placeholder="مثلاً ۵ دقیقه" /></div>
+    </div>
+    <div class="form-row"><div class="form-group"><label>خلاصه / توضیحات</label><textarea id="blogSummaryInput" placeholder="یک یا دو جمله خلاصه مقاله..."></textarea></div></div>
+    <div class="form-row"><div class="form-group">
+      <label>محتوای مقاله</label>
+      <div style="border:1px solid var(--border2);border-radius:8px;overflow:hidden">
+        <div style="background:var(--card2);padding:8px 10px;display:flex;gap:4px;border-bottom:1px solid var(--border)">
+          <button class="btn btn-ghost btn-sm" style="padding:4px 8px" onclick="formatText('bold')"><i class="fa-solid fa-bold"></i></button>
+          <button class="btn btn-ghost btn-sm" style="padding:4px 8px" onclick="formatText('italic')"><i class="fa-solid fa-italic"></i></button>
+          <button class="btn btn-ghost btn-sm" style="padding:4px 8px" onclick="formatText('underline')"><i class="fa-solid fa-underline"></i></button>
+          <div style="width:1px;background:var(--border);margin:0 4px"></div>
+          <button class="btn btn-ghost btn-sm" style="padding:4px 8px" onclick="formatText('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
+          <button class="btn btn-ghost btn-sm" style="padding:4px 8px" onclick="formatText('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
+          <div style="width:1px;background:var(--border);margin:0 4px"></div>
+          <button class="btn btn-ghost btn-sm" style="padding:4px 8px" onclick="formatText('justifyRight')"><i class="fa-solid fa-align-right"></i></button>
+          <button class="btn btn-ghost btn-sm" style="padding:4px 8px" onclick="formatText('justifyCenter')"><i class="fa-solid fa-align-center"></i></button>
+        </div>
+        <div id="blogEditor" contenteditable="true" style="min-height:140px;padding:12px;outline:none;font-size:13px;line-height:1.8;color:var(--text);direction:rtl" data-placeholder="محتوای مقاله را اینجا بنویسید..."></div>
+      </div>
+    </div></div>
+    <div class="form-row"><div class="form-group">
+      <label>تصویر شاخص مقاله</label>
+      <div class="upload-zone" style="padding:14px" onclick="showToast('آپلود تصویر مقاله')">
+        <i class="fa-solid fa-image" style="font-size:20px;margin-bottom:4px"></i>
+        <p style="font-size:11px"><span>JPG, PNG, WEBP</span> · نسبت ۱۶:۹ پیشنهادی</p>
+      </div>
+    </div></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="saveBlogDraft()"><i class="fa-solid fa-floppy-disk"></i>ذخیره پیش‌نویس</button>
+      <button class="btn btn-ghost" onclick="closeModal('blogWriteModal')">انصراف</button>
+      <button class="btn btn-primary" onclick="publishBlog()"><i class="fa-solid fa-paper-plane"></i>انتشار مقاله</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fa-solid fa-check-circle"></i><span id="toastMsg"></span></div>
+
+<script src="{% static 'js/panel.js' %}"></script>
+</body>
+</html>

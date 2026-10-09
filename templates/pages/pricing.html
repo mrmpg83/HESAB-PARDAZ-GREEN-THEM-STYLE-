@@ -1,0 +1,62 @@
+{% extends "pages/base.html" %}
+{% block title %}نرم افزار شخصی سازی و انتخاب دلخواه حسابپرداز | حساب پرداز{% endblock %}
+{% block description %} name="description" content="نسخه نرم‌افزار حسابداری خود را شخصی‌سازی کنید؛ دسته‌بندی کسب‌وکار (بازرگانی، تولیدی، خدماتی) را انتخاب کرده و امکانات موردنیازتان را اضافه کنید تا قیمت نهایی محاسبه شود."{% endblock %}
+{% block keyword %} name="keywords" content="قیمت نرم افزار حسابداری بازرگانی, پلن بازرگانی حساب پرداز, مقایسه پلن های حسابداری"{% endblock %}
+{% load static %}
+{% block content %}
+<H1 hidden>نرم افزار</H1>
+<H2 hidden>حسابداری</H2>
+<H3 hidden>حساب پردازنرم افزار حسابداری</H3>
+<H4 hidden>برنامه حسابداری</H4>
+<H5 hidden> برنامه نرم‌افزار حسابداری</H5>
+<H6 hidden>نرم‌افزار مالی حسابداری</H6>
+<title hidden>برنامه حسابداری حساب پرداز</title>
+<section class="about-hero">
+  <div class="dot-overlay"></div>
+  <div class="wrap">
+    <span class="eyebrow eyebrow-on-cream">شخصی‌سازی</span>
+    <h1>نسخه موردنیاز خودتان را بسازید</h1>
+    <p>می‌توانید هم‌زمان از چند دسته‌بندی هم امکانات انتخاب کنید؛ کافی است بین دسته‌ها جابه‌جا شوید و از هرکدام آنچه نیاز دارید را تیک بزنید — قیمت نهایی همه را با هم نشان می‌دهد.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="cfg-grid">
+
+      <div class="cfg-card">
+        <h3>دسته‌بندی کسب‌وکار</h3>
+        <div class="cat-list" id="catList"></div>
+      </div>
+
+      <div class="cfg-card">
+        <div class="items-head">
+          <h3 id="itemsTitle">امکانات بازرگانی</h3>
+          <span class="base-badge" id="baseBadge"></span>
+        </div>
+        <div id="itemsList"></div>
+      </div>
+
+      <div class="cfg-summary">
+        <h3>قیمت محاسبه‌شده</h3>
+        <div id="summaryList"></div>
+        <div class="summary-total"><span>جمع کل</span><span id="totalPrice">۰ تومان</span></div>
+        <a href="{% url 'agentList' %}" class="btn btn-dark">انتخاب نماینده و خرید</a>
+        <p class="hint">قیمت نهایی پس از تماس کارشناسان قابل تایید است</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>مطمئن نیستید کدام امکانات را انتخاب کنید؟</h2>
+    <p>کارشناسان ما با شناخت کسب‌وکارتان، بهترین ترکیب امکانات را به شما پیشنهاد می‌دهند.</p>
+    <div class="cta-btns">
+      <button class="btn btn-dark">مشاوره رایگان</button>
+      <button class="btn btn-outline-on-cream">تماس با پشتیبانی</button>
+    </div>
+  </div>
+</section>
+{% endblock %}

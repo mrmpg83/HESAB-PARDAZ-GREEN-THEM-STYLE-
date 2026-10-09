@@ -1,0 +1,74 @@
+{% extends "pages/base.html" %}
+{% block title %}حساب پرداز | ورود{% endblock %}
+{% block content %}
+<div class="auth-shell">
+ 
+  <aside class="auth-brand">
+    <div class="auth-mark">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M3 9h18M9 9v12" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+      <span>حساب‌پرداز</span>
+    </div>
+ 
+    <div class="auth-brand-body">
+      <h1>دفتر حساب‌هایتان، همیشه در دسترس.</h1>
+      <p>وارد شوید تا سوابق مالی، فاکتورها و دفتر کل کسب‌وکارتان را همان‌جا که ترکش کرده بودید ادامه دهید.</p>
+    </div>
+ 
+    <div class="auth-ledger-tags">
+      <span>تولیدی</span>
+      <span>فروشگاهی</span>
+      <span>شرکتی</span>
+      <span>خدماتی</span>
+    </div>
+  </aside>
+ 
+  <section class="auth-panel">
+    <div class="auth-card">
+      <span class="auth-tag">ورود</span>
+ 
+      <div class="auth-form-box">
+        <h2>خوش برگشتید</h2>
+        <p class="auth-sub">برای ادامه به حساب کاربری‌تان وارد شوید.</p>
+ 
+        <form method="post" class="auth-form">
+          {% csrf_token %}
+ 
+          {% if form.non_field_errors %}
+            <div class="form-errors">
+              {% for error in form.non_field_errors %}
+                <p class="error-message">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+ 
+          <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+            {{ form.username }}
+            {% for error in form.username.errors %}
+              <p class="error-message">{{ error }}</p>
+            {% endfor %}
+          </div>
+ 
+          <div class="form-group">
+            <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+            {{ form.password }}
+            {% for error in form.password.errors %}
+              <p class="error-message">{{ error }}</p>
+            {% endfor %}
+          </div>
+ 
+          <button type="submit" class="btn btn-primary">ورود</button>
+        </form>
+ 
+        <p class="auth-foot">
+          هنوز حساب ندارید؟ <a href="{% url 'register' %}">ثبت‌نام کنید</a>
+        </p>
+      </div>
+    </div>
+  </section>
+ 
+</div>
+{% endblock %}
