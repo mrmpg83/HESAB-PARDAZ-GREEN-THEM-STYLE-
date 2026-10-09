@@ -79,8 +79,7 @@ REPO-NAME/
 
 ## Screenshots
 
-<!-- Add screenshots here, for example: -->
-<!-- ![Home page](screenshots/home.png) -->
+ Add screenshots here, for example: ![Home page](screenshots/home.png)
 
 ## Customization
 
